@@ -12,4 +12,19 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: false, 
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
 });
